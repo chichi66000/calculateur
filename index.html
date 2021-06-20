@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="main.css"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="output.css"/>
+  
+
+  <title>Frontend Mentor | Calculator app</title>
+
+</head>
+<body>
+
+  <header>
+    <div class="attribution mb-5">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Khanh Chi LE</a>.
+    </div>
+  </header>
+    
+  <!-- calculatrice -->
+    <div id="calculatrice" class=" w-9/12 md:w-2/4 lg:w-1/3 mx-auto">
+
+      <!-- section 1 -->
+        <div class="seg1 flex flex-row justify-between my-4">
+          <p class="calc w-1/2 text-2xl self-end flex-1">calc</p>
+
+          <!-- switch theme -->
+          <div class=" switch  self-end flex flex-col">
+            <!-- les chiffre du theme -->
+            <div class="theme text-sm justify-end flex flex-row">
+              <p class="theme1 pl-4">1</p>
+              <p class="theme2 pl-4">2</p>
+              <p class="theme3 pl-4">3</p>
+            </div>
+            
+            <!-- input type range -->
+                <div class=" flex flex-row">
+                  <label for="range" class="pr-5 text-xs">THEME</label>
+                  <input type="range" class="w-16  " min="0" max="2" step="1" id="customRange1">
+                </div>
+                
+              </div>
+             
+          
+        </div>
+
+      <!-- section 2 écran-->
+
+        <div  class="grid grid-cols-2 h-16 seg2 text-5xl mb-4 text-right p-3 text-white">
+          <p id="memoire" class="text-xs text-left">M+</p>
+          <p id="ecran" class = "pr-3 mr-2 absolute justify-self-end"></p>
+        </div>
+
+      <!-- section 3 les chiffres -->
+        <div class=" seg3 grid grid-rows-5 mb-4 text-center">
+
+          <!-- ligne 1 -->
+          <div class="ligne1 grid grid-cols-4">
+            <button data-key="103" id="b7" value="7" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre " >7</button>
+            <button data-key="104" id="b8" value="8" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">8</button>
+            <button data-key="105" id="b9" value="9" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">9</button>
+            <button data-key="46" id="bDel" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key ">C</button>
+          </div>
+
+          <!-- ligne2 -->
+          <div class="ligne2 grid grid-cols-4">
+            <button data-key="100" id="b4" value="4" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">4</button>
+            <button data-key="101" id="b5" value="5" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">5</button>
+            <button data-key="102" id="b6" value="6" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">6</button>
+            <button data-key="107" id="bPlus" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">+</button>
+          </div>
+
+          <!-- ligne 3 -->
+          <div class="ligne3 grid grid-cols-4">
+            <button data-key="97" id="b1" value="1" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre " >1</button>
+            <button data-key="98" id="b2" value="2" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">2</button>
+            <button data-key="99" id="b3" value="3" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">3</button>
+            <button data-key="109" id="bMoins" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">-</button>
+          </div>
+
+          <!-- ligne 4 -->
+          <div class="ligne4 grid grid-cols-4">
+            <button data-key="110" id="bDecimal" class=" bouton p-2 m-2 ring ring-white ring-inset ring-4 rounded-md chiffre">.</button>
+            <button data-key="96" id="b0" value="0" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">0</button>
+            <button data-key="111" id="bDiv" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">/</button>
+            <button data-key="106" id="bMul" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">*</button>
+          </div>
+
+          <!-- ligne 5 -->
+          <div class=" ligne5 grid grid-cols-4">
+            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">M+</button>
+            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">M-</button>
+            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">MR</button>
+
+            <button data-key="13" id="bEgale" class=" bouton  p-2 m-2 ring ring-inset ring-4 rounded-md red-key">=</button>
+            
+          </div>
+
+        </div>
+      
+    </div>
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
