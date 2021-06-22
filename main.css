@@ -1,15 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+
 
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
 
 body {
-    background: hsl(222, 26%, 31%) !important;
-    
+    background: hsl(222, 26%, 31%) !important;   
 }
 
 /* section 1 */
@@ -23,8 +20,8 @@ body {
     background:  hsl(224, 36%, 15%) !important;
 }
 #memoire{
-    top: 5px;
-    left: 20px;
+    /* top: 5px;
+    left: 20px; */
     display: none;
 }
 
