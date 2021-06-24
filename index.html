@@ -12,7 +12,7 @@
 
 </head>
 <body>
-
+<div class="bodytheme1 bodytheme">
   <header>
     <div class="attribution mb-5">
         Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
@@ -24,7 +24,7 @@
     <div id="calculatrice" class=" w-9/12 md:w-2/4 lg:w-1/3 mx-auto">
 
       <!-- section 1 -->
-        <div class="seg1 flex flex-row justify-between my-4">
+        <div class="seg1theme1  seg1 flex flex-row justify-between my-4">
           <p class="calc w-1/2 text-2xl self-end flex-1">calc</p>
 
           <!-- switch theme -->
@@ -39,7 +39,7 @@
             <!-- input type range -->
                 <div class=" flex flex-row">
                   <label for="range" class="pr-5 text-xs">THEME</label>
-                  <input  type="range" class="w-16  " min="1" max="3" step="1" value="" id="range">
+                  <input  type="range" class="w-16  " min="1" max="3" step="1" value="1" id="range">
                 </div>
                 
               </div>
@@ -49,53 +49,53 @@
 
       <!-- section 2 écran-->
 
-        <div  class="grid grid-cols-2 h-16 seg2 text-5xl mb-4 text-right p-3 text-white">
+        <div  class="grid grid-cols-2 h-16 seg2 seg2theme1 text-5xl mb-4 text-right p-3 text-white">
           <p id="memoire" class="text-xs text-left">M+</p>
           <p id="ecran" class = "pr-3 mr-2 absolute justify-self-end"></p>
         </div>
 
       <!-- section 3 les chiffres -->
-        <div class=" seg3 grid grid-rows-5 mb-4 text-center">
+        <div class=" seg3 seg3theme1 grid grid-rows-5 mb-4 text-center p-5">
 
           <!-- ligne 1 -->
-          <div class="ligne1 grid grid-cols-4">
-            <button data-key="103" id="b7" value="7" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre " >7</button>
-            <button data-key="104" id="b8" value="8" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">8</button>
-            <button data-key="105" id="b9" value="9" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">9</button>
-            <button data-key="46" id="bDel" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key ">C</button>
+          <div class="ligne1 grid grid-cols-4 ">
+            <button id="b7" value="7" onclick="showValue(this)" class=" boutonChiffre p-2 m-2 rounded-md  chiffre  chiffretheme1 " >7</button>
+            <button value="8" onclick="showValue(this)" id="b8"  class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1 ">8</button>
+            <button value="9" onclick="showValue(this)" id="b9"  class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1 ">9</button>
+            <button onclick="del()" id="bDel" class=" boutonChiffre p-2 m-2   rounded-md blue-key blue-keytheme1 ">C</button>
           </div>
 
           <!-- ligne2 -->
-          <div class="ligne2 grid grid-cols-4">
-            <button data-key="100" id="b4" value="4" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">4</button>
-            <button data-key="101" id="b5" value="5" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">5</button>
-            <button data-key="102" id="b6" value="6" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre ">6</button>
-            <button data-key="107" id="bPlus" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">+</button>
+          <div class="ligne2 grid grid-cols-4 ">
+            <button value="4" onclick="showValue(this)" id="b4"  class=" boutonChiffre p-2  m-2 chiffre rounded-md chiffretheme1 ">4</button>
+            <button value="5" onclick="showValue(this)" id="b5"  class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1 ">5</button>
+            <button value="6" onclick="showValue(this)" id="b6"  class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1 ">6</button>
+            <button value="+" onclick="showValue(this);oneClick(this);" id="bPlus" class=" boutonOperation p-2 m-2 chiffre  rounded-md chiffretheme1">+</button>
           </div>
 
           <!-- ligne 3 -->
-          <div class="ligne3 grid grid-cols-4">
-            <button data-key="97" id="b1" value="1" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre " >1</button>
-            <button data-key="98" id="b2" value="2" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">2</button>
-            <button data-key="99" id="b3" value="3" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">3</button>
-            <button data-key="109" id="bMoins" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">-</button>
+          <div class="ligne3 grid grid-cols-4 ">
+            <button value="1" onclick="showValue(this)" id="b1"  class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1 " >1</button>
+            <button value="2" onclick="showValue(this)" id="b2"  class=" boutonChiffre p-2 m-2  chiffre rounded-md chiffretheme1">2</button>
+            <button onclick="showValue(this)" id="b3" value="3" class=" boutonChiffre p-2 m-2  chiffre rounded-md chiffretheme1">3</button>
+            <button onclick="showValue(this);oneClick(this);" value="-" id="bMoins" class=" boutonOperation p-2 m-2  chiffre rounded-md chiffretheme1">-</button>
           </div>
 
           <!-- ligne 4 -->
-          <div class="ligne4 grid grid-cols-4">
-            <button data-key="110" id="bDecimal" class=" bouton p-2 m-2 ring ring-white ring-inset ring-4 rounded-md chiffre">.</button>
-            <button data-key="96" id="b0" value="0" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">0</button>
-            <button data-key="111" id="bDiv" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">/</button>
-            <button data-key="106" id="bMul" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md chiffre">*</button>
+          <div class="ligne4 grid grid-cols-4 ">
+            <button value="." onclick="showValue(this);uneFois(this);" id="bDecimal" class=" bouton3 p-2 m-2 chiffre rounded-md chiffretheme1">.</button>
+            <button  id="b0" value="0" onclick="showValue(this)" class=" boutonChiffre p-2 m-2 chiffre  rounded-md chiffretheme1">0</button>
+            <button  id="bDiv" value="/" onclick="showValue(this);oneClick(this);" class=" boutonOperation p-2 m-2 chiffre  rounded-md chiffretheme1">/</button>
+            <button  id="bMul" value="*" onclick="showValue(this);oneClick(this);" class=" boutonOperation p-2 m-2  chiffre rounded-md chiffretheme1">*</button>
           </div>
 
           <!-- ligne 5 -->
-          <div class=" ligne5 grid grid-cols-4">
-            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">M+</button>
-            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">M-</button>
-            <button data-key="8" id="bReset" class=" bouton p-2 m-2 ring ring-inset ring-4 rounded-md blue-key">MR</button>
-
-            <button data-key="13" id="bEgale" class=" bouton  p-2 m-2 ring ring-inset ring-4 rounded-md red-key">=</button>
+          <div class=" ligne5 grid grid-cols-5 ">
+            <button id="bReset" onclick="addMemoire(this)" class=" bouton4 p-2 m-2   rounded-md blue-key blue-keytheme1">M+</button>
+            <button id="bReset" onclick="delMemoire()" class=" bouton4 p-2 m-2   rounded-md blue-key blue-keytheme1">M-</button>
+            <button id="bReset" onclick="showMemoire()" class=" bouton4 p-2 m-2   rounded-md blue-key blue-keytheme1">MR</button>
+            <button onclick="active();remov(this);" id="bD" class=" bouton4 p-2 m-2   rounded-md blue-key blue-keytheme1">CE</button>
+            <button onclick="calcul(); active();" id="bEgale" class=" boutonChiffre  p-2 m-2   rounded-md red-key red-keytheme1">=</button>
             
           </div>
 
@@ -103,8 +103,10 @@
       
     </div>
 
+  </div>
+  <!-- fin -->
+    <script src="calcul.js"></script>
 
-
-    <script src="main2.js"></script>
+    <!-- <script src="main2.js"></script> -->
 </body>
 </html>

@@ -3,44 +3,112 @@
 
 
 .attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
+.attribution a { color: black; }
 
-body {
+
+.bodytheme1 {
     background: hsl(222, 26%, 31%) !important;   
 }
-
+.bodytheme2 {
+    background: hsl(0, 0%, 90%);
+}
+.bodytheme3 {
+    background: hsl(268, 75%, 9%);
+}
 /* section 1 */
-.seg1 {
+.seg1theme1 {
     color: white !important;
     
 }
-
+.seg1theme2 {
+    color: black !important;
+}
+.seg1theme3 {
+    color: hsl(52, 100%, 62%)
+}
 /* section 2 écran*/
-.seg2 {
+.seg2theme1 {
     background:  hsl(224, 36%, 15%) !important;
 }
+.seg2theme2 {
+    background: hsl(0, 0%, 93%) !important;
+}
+.seg2theme3 {
+    background: hsl(268, 71%, 12%) !important
+}
 #memoire{
-    /* top: 5px;
-    left: 20px; */
     display: none;
 }
 
 /* section 3 clavier */
-.seg3 {
+.seg3theme1 {
     background: hsl(223, 31%, 20%) !important;
     font-size: 1.5rem;
 }
-.chiffre {
+.seg3theme2 {
+    background: hsl(0, 5%, 81%) !important;
+    font-size: 1.5rem;
+}
+.seg3theme3 {
+    background: hsl(268, 71%, 12%) !important;
+    font-size: 1.5rem;
+}
+
+.chiffretheme1 {
     background: hsl(30, 25%, 89%)  !important;
     color: hsl(221, 14%, 31%);
+    border-color: hsl(28, 16%, 65%); 
+    box-shadow: 0px 3px 0.1px hsl(28, 16%, 65%); 
 }
-.blue-key {
+.chiffretheme2 {
+    background:  hsl(45, 7%, 89%)  !important;
+    color: hsl(221, 14%, 31%);
+    border-color: hsl(35, 11%, 61%); 
+    box-shadow: 0px 3px 0.1px hsl(35, 11%, 61%);
+}
+.chiffretheme3 {
+    background: hsl(268, 47%, 21%)  !important;
+    color: hsl(52, 100%, 62%);
+    border-color: hsl(290, 70%, 36%);
+    box-shadow: 0px 3px 0.1px hsl(290, 70%, 36%);
+}
+
+.blue-keytheme1 {
     background: hsl(225, 21%, 49%) !important;
     color: hsl(0, 0, 100%);
+    border-color: hsl(224, 28%, 35%);
+    box-shadow: 0px 3px 0.1px hsl(224, 28%, 35%);
 }
-.red-key {
+.blue-keytheme2 {
+    background: hsl(185, 42%, 37%) !important;
+    color: hsl(0, 0, 100%);
+    border-color: hsl(185, 58%, 25%);
+    box-shadow: 0px 3px 0.1px hsl(185, 58%, 25%);
+}
+.blue-keytheme3 {
+    background: hsl(281, 89%, 26%) !important;
+    color: hsl(0, 0, 100%);
+    border-color: hsl(285, 91%, 52%);
+    box-shadow: 0px 3px 0.1px hsl(285, 91%, 52%);
+}
+
+.red-keytheme1 {
     background: hsl(6, 63%, 50%) !important;
     color: hsl(0, 0, 100%);
+    border-color: hsl(6, 70%, 34%);
+    box-shadow: 0px 3px 0.1px hsl(6, 70%, 34%)
+}
+.red-keytheme2 {
+    background: hsl(25, 98%, 40%) !important;
+    color: hsl(0, 0, 100%);
+    border-color: hsl(25, 99%, 27%);
+    box-shadow: 0px 3px 0.1px hsl(25, 99%, 27%)
+}
+.red-keytheme3 {
+    background: hsl(176, 100%, 44%) !important;
+    color: hsl(198, 20%, 13%);
+    border-color: hsl(177, 92%, 70%);
+    box-shadow: 0px 3px 0.1px hsl(177, 92%, 70%)
 }
 
 /* pour très petit écran <314px */

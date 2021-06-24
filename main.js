@@ -136,8 +136,7 @@ function calculer (nb1, nb2, operation) {
     
     nb1 = parseFloat(nb1);
     nb2 = parseFloat(nb2);
-    nb1 = nb1*1;
-    nb2 = nb2*1;
+    
     if ( operation === "+") {return nb1 + nb2}
     if ( operation === "-") {return nb1 - nb2}
     if ( operation === "*") {return nb1 * nb2}
