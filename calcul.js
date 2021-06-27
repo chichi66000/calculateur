@@ -1,13 +1,16 @@
 // declarer les variables
 
 // ==> les chiffres <==
-let chiffres = [...document.querySelectorAll('.chiffre')]
+let chiffres = [...document.querySelectorAll('.boutonChiffre')]
 
 // ==> bouton décimal <==
 const decimal = document.getElementById('bDecimal');
 
 // ==> bouton opérations <==
 const bOperation = [...document.querySelectorAll('.boutonOperation')]
+
+// ==> bouton = <==
+const egale = document.getElementById('bEgale')
 
 // ==> écran affichage <==
 const ecran = document.getElementById('ecran');
@@ -25,31 +28,86 @@ if (memoire != 0) {
     memoireElt.style.display = "initial"
 }
 
-// window.onload = () => {
+window.onload = () => {
 
-//     for ( let chiffre of chiffres) {
-//         chiffre.addEventListener('click', showValue)
-//     }
-//     ["keydown", "click"].forEach(function(event) {
-//         decimal.addEventListener(event, () => {
-//         uneFois();
-//         }, false)
-//     })
+    let touches = document.getElementsByTagName('button');
 
-//     document.addEventListener('keydown', showValue);
-// }
+    // calculer avec clic
+    for(let touche of touches){
+        touche.addEventListener("click", gererTouches);
+    }
+    // assurer que opération se clique juste 1 fois 
+    for ( let i = 0; i<bOperation.length; i++) {
+        bOperation[i].addEventListener('click', oneClick)
+    }
 
+    // assurer qu'un seul décimal dans le nombre 
+    decimal.addEventListener("click", uneFois)
 
-// afficher les values des boutons dans écran
-function showValue(btn) {
+    // event pour calculer avec clavier
+    document.addEventListener('keydown', gererTouches);
+}
 
-    input = input + btn.innerText;
-    ecran.innerHTML = input;
-    // activer les boutons des opérations
-    for (let i = 0; i <bOperation.length; i++) {
-        bOperation[i].disabled = false;
+function gererTouches (e) {
+    let touche ;
+    const listTouches = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Delete", "Backspace", ".", "+", "-", "*", "/"];
+
+    // on vérifie si évènement est de type keydown
+    if (e.type == "keydown" ) {
+        // on compare la touche appuyé dans la liste autorisé
+        if ( listTouches.includes(e.key)) {
+            // empêcher action default du touche ( ex firefox ave touche /)
+            e.preventDefault();
+            // on stock la valeur dans variable touche
+            touche = e.key;
+        }
+    }
+    else {
+        touche = this.innerText;    // sinon c'est du clic
+    }
+
+    // affichage chiffre, opération, décimal
+    if (parseFloat(touche) >= 0 || touche == "." || touche == "*" || touche == "/" || touche == "+" || touche == "-"  ) {
+        input = (input =="") ? touche.toString() : input + touche.toString();
+
+        ecran.innerText = input;
+
+        // activer les touches opérations quand on click sur les bouton chiffres
+        if ( parseFloat(touche) >= 0) {
+            // activer les boutons des opérations
+            for (let i = 0; i <bOperation.length; i++) {
+                bOperation[i].disabled = false;
+            }
+        }
+    }
+    // pour les autres boutons 
+    else {
+        switch (touche) {
+            // touche C; on supprime tout
+            case "C":
+            case "Delete":
+                input = "";
+                ecran.innerText = 0;
+                // activer tous les boutons
+                active()
+                break;
+
+            // resultat
+            case "=":
+            case "Enter":
+                //  faire le calcul
+                calcul();
+                break;
+
+            // case CE
+            case "CE":
+            case "Backspace":
+                // effacer dernier chiffre entrée
+                remouv()
+        }
     }
 }
+
 
 // calculer ecran
 function calcul() {
@@ -84,20 +142,10 @@ function calcul() {
     
 }
 
-// supprimer ecran avec le C
-function del () {
-    //réinitialiser écran
-    ecran.innerHTML = 0;
-    input ="";
-}
 
 // empecher le bouton decimal et chaque operation se click 2 fois de suite et l'un après l'autre
 function uneFois () {
     decimal.disabled = true;
-    console.log("true")
-    // for (let i = 0; i <bOperation.length; i++) {
-    //     bOperation[i].disabled = false;
-    // }
 }
 
 // assurer que opération se clique juste 1 fois
@@ -113,7 +161,7 @@ function oneClick (btn) {
 }
 
 // bouton CE , effacer 1 chiffre dans écran
-function remov(btn) {
+function remouv(btn) {
     ecran.textContent = ecran.textContent.substr(0, ecran.textContent.length -1);
     if (ecran.textContent == "") {
         input = ""
@@ -138,21 +186,23 @@ function addMemoire (btn) {
     memoireElt.style.display = "initial" ;
 }
 
-// function afficher mémoire
+// function afficher mémoire avec MR
 function showMemoire () {
     // on récupère la valeur stocké
     memoire = (localStorage.memoire)? parseFloat(localStorage.memoire) : 0; 
     ecran.innerText = memoire;
 }
 
-// function remove mémoire
+// function remove mémoire avec M-
 function delMemoire() {
     localStorage.memoire = 0;
     memoireElt.style.display = "none" ;
     
 }
 
-// ==> changer le theme avec bouton <==
+
+
+// ==> changer le theme avec bouton THEME <==
 
 // accéder aux différent partie du calculateur
 let bodytheme = document.querySelector('.bodytheme');

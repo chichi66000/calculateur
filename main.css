@@ -32,6 +32,7 @@
 }
 .seg2theme2 {
     background: hsl(0, 0%, 93%) !important;
+    color: black !important;
 }
 .seg2theme3 {
     background: hsl(268, 71%, 12%) !important
@@ -87,7 +88,7 @@
 }
 .blue-keytheme3 {
     background: hsl(281, 89%, 26%) !important;
-    color: hsl(0, 0, 100%);
+    color: white;
     border-color: hsl(285, 91%, 52%);
     box-shadow: 0px 3px 0.1px hsl(285, 91%, 52%);
 }
