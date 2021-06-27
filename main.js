@@ -83,7 +83,6 @@ function gererTouches (e) {
                 // on calcul la valeur de opération précédente:
                 precedent = (precedent === 0) ? parseFloat(affichage) : calculer(precedent, parseFloat(affichage), operation);
 
-                
                 // on met à jour ecran
                 ecranElt.innerText = precedent;
                 // on stock operation
@@ -143,58 +142,3 @@ function calculer (nb1, nb2, operation) {
     if ( operation === "/") {return nb1 / nb2}
 }
 
-// Pour la barre de changement style
-
-let b7 = document.getElementById('b7')
-b7.style.color = "red";     //OK
-b7.style.backgroundColor="yellow" //not work
-     // not work
-
-// // accéder aux différent partie du calculateur
-// let seg1 = document.querySelector('.seg1');
-// let seg2 = document.querySelector('.seg2');
-// let seg3 = document.querySelector('.seg3');
-// let chiffre = document.querySelectorAll('.chiffre');
-// let blueKey = document.querySelectorAll('.blue-key');
-// let redKey = document.querySelectorAll('.red-key');
-
-// // accéder au input range
-// let range = document.getElementById('range');
-
-// range.addEventListener("change", () => {
-//     range.style.color = "red"
-//     // theme 1
-// //     if ( range.value == 1 ) {
-// //     document.body.style.backgroundColor = "hsl(222, 26%, 31%)";
-// //     seg1.style.color = "white";
-// //     seg2.style.background = "hsl(224, 36%, 15%)";
-// //     seg3.style.background = "hsl(223, 31%, 20%)";
-// //     chiffre.style.color = "hsl(221, 14%, 31%)";
-// //     chiffre.style.background = "hsl(30, 25%, 89%)";
-// //     blueKey.style.color = "hsl(0, 0, 100%)";
-// //     blueKey.style.background = "hsl(225, 21%, 49%)";
-// //     redKey.style.background = "hsl(6, 63%, 50%)";
-// //     redKey.style.color = "white";
-
-// // }
-//     // theme 2
-// if (range.value == 2) {
-//     document.body.style.backgroundColor = "yellow";
-//     // seg1.style.color = "red";
-//     // seg2.style.backgroundColor = "green";
-//     // seg3.style.backgroundColor = "lightgray";
-//     // for ( let i=0; i< chiffre.length; i++) {
-//     //     chiffre[i].style.color = "violet";
-//     //     chiffre[i].style.backgroundColor = "black";
-//     // }
-//     // for ( let i=0; i< blueKey.length; i++) {
-//     //     blueKey[i].style.color = "gray";
-//     //     blueKey[i].style.backgroundColor = "blue";
-//     // }
-//     // for ( let i=0; i< redKey.length; i++) {
-//     //     redKey[i].style.backgroundColor = "pink";
-//     //     redKey[i].style.color = "white";
-//     // }
-// }
-// if (range.value ==3) { console.log("range 3")}
-// } )
