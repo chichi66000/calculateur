@@ -1,3 +1,6 @@
+===> This projet use Tailwind framework , use npm run to install les dependencies
+
+
 # Front-end Style Guide
 
 ## Layout
