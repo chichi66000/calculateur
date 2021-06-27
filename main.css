@@ -7,14 +7,18 @@
 
 
 .bodytheme1 {
-    background: hsl(222, 26%, 31%) !important;   
+    background: hsl(222, 26%, 31%) !important;
+    height: 100vh;
 }
 .bodytheme2 {
     background: hsl(0, 0%, 90%);
+    height: 100vh;
 }
 .bodytheme3 {
     background: hsl(268, 75%, 9%);
+    height: 100vh;
 }
+
 /* section 1 */
 .seg1theme1 {
     color: white !important;

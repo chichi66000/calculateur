@@ -225,6 +225,7 @@ range.addEventListener('input', () => {
     if (range.value == 1) {
         bodytheme.classList.remove('bodytheme2', 'bodytheme1')
         bodytheme.classList.add('bodytheme1')
+        // document.body.style.backgroundColor = "hsl(222, 26%, 31%)"
 
         seg1.classList.remove('seg1theme2', 'seg1theme3')
         seg1.classList.add('seg1theme1');
@@ -253,34 +254,36 @@ range.addEventListener('input', () => {
     if (range.value == 2) {
         bodytheme.classList.remove('bodytheme1', 'bodytheme3')
         bodytheme.classList.add('bodytheme2')
+        // document.body.style.backgroundColor = "hsl(0, 0%, 90%)"
+        
         seg1.classList.remove('seg1theme1', 'seg1theme3')
         seg1.classList.add('seg1theme2')
+
         seg2.classList.remove('seg2theme1', 'seg2theme3')
         seg2.classList.add('seg2theme2');
+
         seg3.classList.remove('seg3theme1', 'seg3theme3')
         seg3.classList.add('seg3theme2');
+
         for ( let i= 0; i< chiffre.length; i++) {
             chiffre[i].classList.remove('chiffretheme1', 'chiffretheme3')
             chiffre[i].classList.add('chiffretheme2')
-
         }
+
         for ( let i= 0; i< blueKey.length; i++) {
             blueKey[i].classList.remove('blue-keytheme1', 'blue-keytheme3')
             blueKey[i].classList.add('blue-keytheme2')
-
         }
        
         redKey.classList.remove('red-keytheme1', 'red-keytheme3')
         redKey.classList.add('red-keytheme2')
-
-        
-
     }
 
     // theme 3
     if (range.value == 3) {
         bodytheme.classList.remove('bodytheme1', 'bodytheme2')
         bodytheme.classList.add('bodytheme3')
+        // document.body.style.backgroundColor = "hsl(268, 75%, 9%)"
 
         seg1.classList.remove('seg1theme1', 'seg1theme2')
         seg1.classList.add('seg1theme3');
