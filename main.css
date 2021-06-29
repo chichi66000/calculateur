@@ -117,11 +117,41 @@
 }
 
 /* pour très petit écran <314px */
-@media screen and (max-width: 314px) {
+@media screen and (min-width: 201px) and (max-width: 460px) {
     #calculatrice {
         width: 95%;
     }
+    .seg2 {
+        font-size: 1.5rem !important;
+    }
     .seg3 {
         font-size: 1rem;
+        padding: 0.3rem !important;;
+    }
+    .chiffre, .blue-key, .red-key {
+        margin-left: 0.2rem !important;
+        padding: 0.2rem !important;
+    }
+    .blue-key {
+        font-size: 0.9rem;
+    }
+    
+}
+
+@media screen and (max-width: 200px) {
+    #calculatrice {
+        width: 100%;
+    }
+    .seg2 {
+        font-size: 1rem !important;
+    }
+    .seg3 {
+        font-size: 0.7rem;
+        padding: 0.2rem !important;;
+    }
+    .chiffre, .blue-key, .red-key {
+        margin-left: 0.1rem !important;
+        
+        padding: 0.1rem !important;
     }
 }

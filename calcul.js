@@ -14,9 +14,11 @@ const egale = document.getElementById('bEgale')
 
 // ==> écran affichage <==
 const ecran = document.getElementById('ecran');
+// commencer par 0
+ecran.innerText = "0"
 
 // input de tous les valeurs
-let input = "";
+let input = "0";
 
 // initialiser la memoire
 let memoire ;
@@ -68,10 +70,23 @@ function gererTouches (e) {
 
     // affichage chiffre, opération, décimal
     if (parseFloat(touche) >= 0 || touche == "." || touche == "*" || touche == "/" || touche == "+" || touche == "-"  ) {
-        input = (input =="") ? touche.toString() : input + touche.toString();
 
-        ecran.innerText = input;
+        if ( parseFloat(touche) >= 0 || touche == "." ) {
+            input = (input == "0")? touche : input + touche
+            
+            // limiter à 16 chiffres
+            if ( input.length > 15) {
+                console.log("15")
+                input = input.substr(0, 15)
+            }
+            ecran.innerText = input;
+        }
 
+        else {
+            input = input + touche.toString();
+            ecran.innerText = input;
+        }
+        
         // activer les touches opérations quand on click sur les bouton chiffres
         if ( parseFloat(touche) >= 0) {
             // activer les boutons des opérations
@@ -79,6 +94,15 @@ function gererTouches (e) {
                 bOperation[i].disabled = false;
             }
         }
+
+        // les boutons opérations va desactiver les boutons chiffres
+        // if ( touche == "*" || touche == "/" || touche == "+" || touche == "-" ) {
+        //     for (let i = 0; i <chiffre.length; i++) {
+        //         chiffre[i].disabled = false;
+        //     }
+        // }
+
+        
     }
     // pour les autres boutons 
     else {
@@ -86,7 +110,7 @@ function gererTouches (e) {
             // touche C; on supprime tout
             case "C":
             case "Delete":
-                input = "";
+                input = "0";
                 ecran.innerText = 0;
                 // activer tous les boutons
                 active()
@@ -114,17 +138,21 @@ function calcul() {
     let calcul ;
     // si le dernière caractère est une opération ou . décimal
     let lastNumber = ecran.textContent.charAt(ecran.textContent.length -1);
+    
     if (isNaN (parseFloat(lastNumber)) || lastNumber == ".") {
         // on enlève opération ou "." pour faire le calcul
         calcul = ecran.textContent.substr(0, ecran.textContent.length -1);
         ecran.textContent = calcul; 
-        input =""
+        input ="0"
     }
+
+    // si division à 0 => infiny
+    // if ( lastNumber == "0" && )
     // si le première caractère est : ou * => erreur
     let firstNumber = ecran.textContent.substr(0,1)
     if (firstNumber == "*" || firstNumber == "/" ) {
         ecran.textContent = "undefined";
-        input =""
+        input ="0"
     }
     // si non faire le calcul avec eval()
     
@@ -132,18 +160,18 @@ function calcul() {
         // si le nombre est entier, afficher
         if ( Number.isInteger(calcul)) {
             ecran.textContent = calcul;
-            input = ""
+            input = "0"
         } 
         // si le nombre est un nombre décimal, arrondir à 2 chiffres
         else {
             ecran.textContent = calcul.toFixed(2) ;
-            input = ""
+            input = "0"
         }
     
 }
 
 
-// empecher le bouton decimal et chaque operation se click 2 fois de suite et l'un après l'autre
+// empecher le bouton decimal se click 2 fois de suite 
 function uneFois () {
     decimal.disabled = true;
 }
@@ -163,16 +191,23 @@ function oneClick (btn) {
 // bouton CE , effacer 1 chiffre dans écran
 function remouv(btn) {
     ecran.textContent = ecran.textContent.substr(0, ecran.textContent.length -1);
-    if (ecran.textContent == "") {
-        input = ""
+    input = input.substr(0, input.length -1)
+    if (ecran.textContent == "0") {
+        input = "0"
     }
 }
 
 // activer tous les boutons avec = , CE, C
 function active() {
+    // decimal
     decimal.disabled = false;
+    // oprération
     for (let i = 0; i <bOperation.length; i++) {
         bOperation[i].disabled = false;
+    }
+    // chiffres
+    for (let i = 0; i <chiffre.length; i++) {
+        chiffre[i].disabled = true;
     }
 }
 
