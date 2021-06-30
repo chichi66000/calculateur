@@ -72,20 +72,25 @@ function gererTouches (e) {
     if (parseFloat(touche) >= 0 || touche == "." || touche == "*" || touche == "/" || touche == "+" || touche == "-"  ) {
 
         if ( parseFloat(touche) >= 0 || touche == "." ) {
+            var inputchiffre = touche;
+            console.log("chiffre " + inputchiffre)
             input = (input == "0")? touche : input + touche
             
-            // limiter à 16 chiffres
-            if ( input.length > 15) {
-                console.log("15")
-                input = input.substr(0, 15)
-            }
+            // // limiter à 16 caracteres, si dépasse enlever dernier chiffre
+            // if ( input.length > 15) {
+            //     console.log("15")
+            //     input = input.substr(0, 15)
+            // }
             ecran.innerText = input;
         }
 
         else {
+            var inputOpera = touche;
+            console.log("ope  " + inputOpera)
             input = input + touche.toString();
             ecran.innerText = input;
         }
+        
         
         // activer les touches opérations quand on click sur les bouton chiffres
         if ( parseFloat(touche) >= 0) {
@@ -146,8 +151,6 @@ function calcul() {
         input ="0"
     }
 
-    // si division à 0 => infiny
-    // if ( lastNumber == "0" && )
     // si le première caractère est : ou * => erreur
     let firstNumber = ecran.textContent.substr(0,1)
     if (firstNumber == "*" || firstNumber == "/" ) {
