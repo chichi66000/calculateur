@@ -5,6 +5,11 @@
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: black; }
 
+button:hover,
+button:focus {
+    opacity: 0.8;
+    color:hsl(25, 98%, 40%);
+}
 .seg2 {
     height: 10rem !important;
     font-size: 1.5rem !important; 

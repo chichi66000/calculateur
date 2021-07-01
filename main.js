@@ -150,10 +150,15 @@ function gererTouches (e) {
         affichage = (affichage =="0") ? touche.toString() : affichage + touche.toString()
         ;
         // on stock les nombres dans input
-        input =  input + touche.toString();
-        // if (input == "0" && touche == ".") {
-        //     input = input + touche
-        // }
+        // input =  input + touche.toString();
+
+        if (input == "0" && touche == ".") {
+            input = input + touche
+        }
+        else if (input == "0" && touche != ".") {
+            input = touche.toString()
+        }
+        else { input = input + touche.toString()}
     
         ecranElt.innerText = input;
 
@@ -175,7 +180,7 @@ function gererTouches (e) {
             // case "Delete":
                 precedent = 0;
                 operation = null;
-                affichage = "";
+                affichage = "0";
                 ecranElt.innerText = 0;
                 ecranResul.innerText = 0;
 
@@ -190,8 +195,7 @@ function gererTouches (e) {
             case "/":
                 // on ajoute opération dans input
                 input += touche;
-                console.log("input2 " + input);
-                let regexO = /^(\d)/g;
+                
                 // affichage les opérations dans écran haut
                 ecranElt.innerText = input;
 
@@ -273,7 +277,7 @@ function gererTouches (e) {
                 memoire = (localStorage.memoire)? parseFloat(localStorage.memoire) : 0;
                 affichage = memoire;
                 // ajoute dans input
-                input = input + memoire;
+                
                 ecranElt.innerText = input;
                 break;
 
@@ -343,3 +347,112 @@ function remouv() {
         ecranResul.innerText = "0"
     }
 }
+
+
+// ==> changer le theme avec bouton THEME <==
+
+// accéder aux différent partie du calculateur
+let bodytheme = document.querySelector('.bodytheme');
+let seg1 = document.querySelector('.seg1');
+let seg2 = document.querySelector('.seg2');
+let seg3 = document.querySelector('.seg3');
+let chiffre1 = document.querySelectorAll('.chiffre');
+let blueKey = document.querySelectorAll('.blue-key');
+let redKey = document.querySelector('.red-key');
+let b7 = document.getElementById('b7')
+
+// accéder au input range
+let range = document.getElementById('range');
+
+// ajouter les évènement de l'input
+range.addEventListener('input', () => {
+    // ==> pour changement de style, enlever la classe active puis ajouter nouvelle class
+
+    //theme 1
+    if (range.value == 1) {
+        bodytheme.classList.remove('bodytheme2', 'bodytheme1')
+        bodytheme.classList.add('bodytheme1')
+        // document.body.style.backgroundColor = "hsl(222, 26%, 31%)"
+
+        seg1.classList.remove('seg1theme2', 'seg1theme3')
+        seg1.classList.add('seg1theme1');
+
+        seg2.classList.remove('seg2theme2', 'seg2theme3')
+        seg2.classList.add('seg2theme1');
+
+        seg3.classList.remove('seg3theme2', 'seg3theme3')
+        seg3.classList.add('seg3theme1');
+
+        for ( let i= 0; i< chiffre1.length; i++) {
+            chiffre1[i].classList.remove('chiffretheme2', 'chiffretheme3')
+            chiffre1[i].classList.add('chiffretheme1')
+        }
+
+        for ( let i= 0; i< blueKey.length; i++) {
+            blueKey[i].classList.remove('blue-keytheme2', 'blue-keytheme3')
+            blueKey[i].classList.add('blue-keytheme1')
+        }
+       
+        redKey.classList.remove('red-keytheme2', 'red-keytheme3')
+        redKey.classList.add('red-keytheme1')
+    }
+
+    // theme 2
+    if (range.value == 2) {
+        bodytheme.classList.remove('bodytheme1', 'bodytheme3')
+        bodytheme.classList.add('bodytheme2')
+        // document.body.style.backgroundColor = "hsl(0, 0%, 90%)"
+        
+        seg1.classList.remove('seg1theme1', 'seg1theme3')
+        seg1.classList.add('seg1theme2')
+
+        seg2.classList.remove('seg2theme1', 'seg2theme3')
+        seg2.classList.add('seg2theme2');
+
+        seg3.classList.remove('seg3theme1', 'seg3theme3')
+        seg3.classList.add('seg3theme2');
+
+        for ( let i= 0; i< chiffre1.length; i++) {
+            chiffre1[i].classList.remove('chiffretheme1', 'chiffretheme3')
+            chiffre1[i].classList.add('chiffretheme2')
+        }
+
+        for ( let i= 0; i< blueKey.length; i++) {
+            blueKey[i].classList.remove('blue-keytheme1', 'blue-keytheme3')
+            blueKey[i].classList.add('blue-keytheme2')
+        }
+       
+        redKey.classList.remove('red-keytheme1', 'red-keytheme3')
+        redKey.classList.add('red-keytheme2')
+    }
+
+    // theme 3
+    if (range.value == 3) {
+        bodytheme.classList.remove('bodytheme1', 'bodytheme2')
+        bodytheme.classList.add('bodytheme3')
+        // document.body.style.backgroundColor = "hsl(268, 75%, 9%)"
+
+        seg1.classList.remove('seg1theme1', 'seg1theme2')
+        seg1.classList.add('seg1theme3');
+
+        seg2.classList.remove('seg2theme1', 'seg2theme2')
+        seg2.classList.add('seg2theme3');
+
+        seg3.classList.remove('seg3theme1', 'seg3theme2')
+        seg3.classList.add('seg3theme3');
+
+        for ( let i= 0; i< chiffre1.length; i++) {
+            chiffre1[i].classList.remove('chiffretheme1', 'chiffretheme2')
+            chiffre1[i].classList.add('chiffretheme3')
+        }
+
+        for ( let i= 0; i< blueKey.length; i++) {
+            blueKey[i].classList.remove('blue-keytheme1', 'blue-keytheme2')
+            blueKey[i].classList.add('blue-keytheme3')
+        }
+       
+        redKey.classList.remove('red-keytheme1', 'red-keytheme2')
+        redKey.classList.add('red-keytheme3')
+    }
+
+})
