@@ -30,12 +30,18 @@ let operation = null;
 // initialiser la memoire
 let memoire ;
 
+// list des touches clavier autorisé
+const listTouches = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Delete", "Backspace", ".", "+", "-", "*", "/"];
+
+// tous les boutons 
+let touches = document.getElementsByTagName('button');
+
 // ecran commence par 0
 ecranB.innerText = "0";
-ecran.textContent = ""
+ecran.textContent = "";
+
 // attendre que window se charge
 window.onload = () => {
-    let touches = document.getElementsByTagName('button');
 
     // 1 seul decimal
     decimal.addEventListener("click", uneFois);
@@ -45,11 +51,24 @@ window.onload = () => {
         bOperation[i].addEventListener('click', oneClick)
     }
 
+    
+    document.addEventListener('keydown', function (event) {
+        if (listTouches.includes(event.key)) {
+            event.preventDefault();
+            // si la valeur du clavier = valeur du bouton, on déclenche le clic
+            for(let touche of touches){
+                if (event.key == touche.innerText) {
+                    console.log(event.key, touche.innerText)
+                    touche.click()
+                }
+            }
+        }
+    });
+
+    // calculer avec clic
     for(let touche of touches){
         touche.addEventListener("click", gererTouches);
     }
-    
-    document.addEventListener('keydown', gererTouches);
 
     //récupérer la mémoire dans le localStorage
     memoire = (localStorage.memoire) ? parseFloat(localStorage.memoire) : 0;
@@ -61,7 +80,7 @@ window.onload = () => {
 // fonction gerer les touches au clic
 function gererTouches (e) {
     let touche ;
-    const listTouches = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Delete", "Backspace", ".", "+", "-", "*", "/"];
+    
 
     // on vérifie si évènement est de type keydown
     if (e.type == "keydown" ) {
