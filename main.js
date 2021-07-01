@@ -37,8 +37,8 @@ const listTouches = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", 
 let touches = document.getElementsByTagName('button');
 
 // ecran commence par 0
-ecranB.innerText = "0";
-ecran.textContent = "";
+ecranResul.innerText = "0";
+ecranElt.textContent = "0";
 
 // attendre que window se charge
 window.onload = () => {
@@ -150,11 +150,10 @@ function gererTouches (e) {
         affichage = (affichage =="0") ? touche.toString() : affichage + touche.toString()
         ;
         // on stock les nombres dans input
-        input = (input =="0") ? touche.toString() : input + touche.toString();
-
-        // s'il y a plus 2 . decimal, garder que 1 seul
-        // if ( !input.match(regex)) {console.log("no")}
-        // else {console.log("yes")}
+        input =  input + touche.toString();
+        // if (input == "0" && touche == ".") {
+        //     input = input + touche
+        // }
     
         ecranElt.innerText = input;
 
@@ -192,6 +191,7 @@ function gererTouches (e) {
                 // on ajoute opération dans input
                 input += touche;
                 console.log("input2 " + input);
+                let regexO = /^(\d)/g;
                 // affichage les opérations dans écran haut
                 ecranElt.innerText = input;
 
@@ -216,12 +216,36 @@ function gererTouches (e) {
             // case "Enter":
                 // on calcule étape précedent + operation
                 precedent = (precedent === 0) ? parseFloat (affichage) : calculer (precedent , parseFloat(affichage), operation);
-                console.log("input resultat " + input)
-                console.log("resultat " + eval(input))
+                
+                // ecran en haut affiche tous les opérations
                 ecranElt.innerText = input;
 
-                // on met à jour ecran
-                ecranResul.innerText = eval(input);
+                let calcul ;
+                
+                // si le dernière caractère est une opération ou . décimal
+                let lastNumber = ecranElt.innerText.charAt(ecranElt.innerText.length -1);
+                console.log("last " + lastNumber)
+                if (isNaN (parseFloat(lastNumber)) || lastNumber == ".") {
+                    // on enlève opération ou "." pour faire le calcul
+                    
+                    calcul = ecranElt.innerText.substr(0, input.length -1);
+                    ecranElt.innerText = calcul; 
+                    input ="0"
+                }
+                // si non faire le calcul avec eval()
+                    
+                calcul = eval(ecranElt.textContent);
+                // si le nombre est entier, afficher
+                if ( Number.isInteger(calcul)) {
+                    ecranResul.textContent = calcul;
+                    input = "0"
+                } 
+                // si le nombre est un nombre décimal, arrondir à 2 chiffres
+                else {
+                    ecranResul.textContent = calcul.toFixed(2) ;
+                    input = "0"
+                }
+
                 // on stock le resultat dans variable affichage
                 affichage = 0;
 
@@ -248,7 +272,9 @@ function gererTouches (e) {
                 // on récupère la valeur stocké
                 memoire = (localStorage.memoire)? parseFloat(localStorage.memoire) : 0;
                 affichage = memoire;
-                ecranElt.innerText = memoire;
+                // ajoute dans input
+                input = input + memoire;
+                ecranElt.innerText = input;
                 break;
 
             case "CE":
@@ -284,12 +310,13 @@ function uneFois () {
 function oneClick () {
     // desactiver cette bouton pour éviter 2 clic en même temps
     this.disabled = true;
+    //activer le bouton decimal
+    decimal.disabled = false;
+
     // desactiver les autres opérations pour éviter une opération l'un après l'autre
     for (let i = 0; i <bOperation.length; i++) {
         bOperation[i].disabled = true;
     }
-    //activer le bouton decimal
-    decimal.disabled = false;
 }
 
 // activer tous les boutons avec = , CE, C
@@ -304,7 +331,6 @@ function active() {
     for (let i = 0; i <chiffre.length; i++) {
         chiffre[i].disabled = false;
     }
-    console.log("oh")
 }
 
 // bouton CE , effacer 1 chiffre dans écran
