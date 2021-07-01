@@ -19,10 +19,10 @@ let chiffre = [...document.querySelectorAll('.boutonChiffre')]
 let precedent = 0;
 
 // on stock tous les opérations
-let input = ""
+let input = "0"
 
 // on stock la valeur d'affichage
-let affichage = "";
+let affichage = "0";
 
 // variable des opérations;
 let operation = null;
@@ -53,15 +53,58 @@ window.onload = () => {
 
     
     document.addEventListener('keydown', function (event) {
+        // si la touche appuyé est dans la liste autorisés, on associé avec action du clic
         if (listTouches.includes(event.key)) {
             event.preventDefault();
-            // si la valeur du clavier = valeur du bouton, on déclenche le clic
-            for(let touche of touches){
-                if (event.key == touche.innerText) {
-                    console.log(event.key, touche.innerText)
-                    touche.click()
+
+            // pour les chiffres
+            for(let i = 0 ; i< chiffre.length; i++){
+                // si la valeur du clavier = valeur du bouton, on associer action du clavier avec le clic
+                if (event.key == chiffre[i].innerText ) {
+                    
+                    chiffre[i].click()
                 }
             }
+
+            // pour les opérations
+            for(let i = 0 ; i< bOperation.length; i++){
+                // si la valeur du clavier = valeur du bouton, on associer action du clavier avec le clic
+                if (event.key == bOperation[i].innerText ) {
+                    
+                    bOperation[i].click()
+                }
+            }
+
+            // pour le . décimal
+            if (event.key == ".") {
+                console.log(event.key)
+
+                // associer à bouton C
+            decimal.click()
+            }
+
+                // pour la touche Delete au clavier
+            if (event.key == "Delete") {
+                    console.log(event.key)
+
+                    // associer à bouton C
+            document.getElementById("bDel").click()
+                }
+                // pour la touche Backspace au clavier
+            if (event.key == "Backspace") {
+                    console.log(event.key)
+
+                    // associer à bouton C
+                    document.getElementById("bD").click()
+                }
+                // pour la touche Enter au clavier
+            if (event.key == "Enter") {
+                    
+                    // associer à bouton C
+                    document.getElementById("bEgale").click()
+                }
+                
+            
         }
     });
 
@@ -83,35 +126,35 @@ function gererTouches (e) {
     
 
     // on vérifie si évènement est de type keydown
-    if (e.type == "keydown" ) {
-        // on compare la touche appuyé dans la liste autorisé
-        if ( listTouches.includes(e.key)) {
-            // empêcher action default du touche ( ex firefox /)
-            e.preventDefault();
-            // on stock la valeur dans variable touche
-            touche = e.key;
+    // if (e.type == "keydown" ) {
+    //     // on compare la touche appuyé dans la liste autorisé
+    //     if ( listTouches.includes(e.key)) {
+    //         // empêcher action default du touche ( ex firefox /)
+    //         e.preventDefault();
+    //         // on stock la valeur dans variable touche
+    //         touche = e.key;
             
-        }
-    }
-    else {
+    //     }
+    // }
+    // else {
         touche = this.innerText;    // sinon c'est du clic
-    }
+    // }
 
     // vérifier si la touche est chiffre ou .
     if (parseFloat(touche) >= 0 || touche ==".") {
         // regex pour chiffre decimal, et chiffre entier
-        let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
+        // let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
         // verifier si la chaine n'a plus d'1 .
         
         // verifier si y a un chifre avant?
-        affichage = (affichage =="") ? touche.toString() : affichage + touche.toString()
+        affichage = (affichage =="0") ? touche.toString() : affichage + touche.toString()
         ;
         // on stock les nombres dans input
-        input = (input =="") ? touche.toString() : input + touche.toString();
+        input = (input =="0") ? touche.toString() : input + touche.toString();
 
         // s'il y a plus 2 . decimal, garder que 1 seul
-        if ( !input.match(regex)) {console.log("no")}
-        else {console.log("yes")}
+        // if ( !input.match(regex)) {console.log("no")}
+        // else {console.log("yes")}
     
         ecranElt.innerText = input;
 
@@ -130,7 +173,7 @@ function gererTouches (e) {
         switch (touche) {
             // touche C; on supprime tout
             case "C":
-            case "Delete":
+            // case "Delete":
                 precedent = 0;
                 operation = null;
                 affichage = "";
@@ -164,13 +207,13 @@ function gererTouches (e) {
                 console.log(input)
                 
                 // reinitialiser affichage
-                affichage = "";
+                affichage = "0";
                 oneClick()
                 break;
 
             // resultat
             case "=":
-            case "Enter":
+            // case "Enter":
                 // on calcule étape précedent + operation
                 precedent = (precedent === 0) ? parseFloat (affichage) : calculer (precedent , parseFloat(affichage), operation);
                 console.log("input resultat " + input)
@@ -209,7 +252,7 @@ function gererTouches (e) {
                 break;
 
             case "CE":
-            case "Backspace":
+            // case "Backspace":
                 // effacer dernier chiffre entrée
                 remouv()
             
@@ -259,15 +302,18 @@ function active() {
     }
     // chiffres
     for (let i = 0; i <chiffre.length; i++) {
-        chiffre[i].disabled = true;
+        chiffre[i].disabled = false;
     }
+    console.log("oh")
 }
 
 // bouton CE , effacer 1 chiffre dans écran
 function remouv() {
-    ecran.textContent = ecran.textContent.substr(0, ecran.textContent.length -1);
-    input = input.substr(0, input.length -1)
-    if (ecran.textContent == "0") {
-        input = "0"
+    ecranElt.textContent = ecranElt.textContent.substr(0, ecranElt.textContent.length -1);
+    input = input.substr(0, input.length -1);
+    ecranResul.innerText = eval(input)
+    if (ecranElt.textContent == "") {
+        input = "0";
+        ecranResul.innerText = "0"
     }
 }
