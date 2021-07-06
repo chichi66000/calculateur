@@ -20,6 +20,7 @@ let precedent = 0;
 
 // on stock tous les opérations
 let input = "0"
+let number;
 
 // on stock la valeur d'affichage
 let affichage = "0";
@@ -143,7 +144,7 @@ function gererTouches (e) {
     // vérifier si la touche est chiffre ou .
     if (parseFloat(touche) >= 0 || touche ==".") {
         // regex pour chiffre decimal, et chiffre entier
-        // let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
+        let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
         // verifier si la chaine n'a plus d'1 .
         
         // verifier si y a un chifre avant?
@@ -152,17 +153,34 @@ function gererTouches (e) {
         // on stock les nombres dans input
         // input =  input + touche.toString();
 
+        // pour commencer et quand on veut faire 0. + chiffre
         if (input == "0" && touche == ".") {
-            input = input + touche
+            input = input + touche;
         }
+        // pour les chiffres normal
         else if (input == "0" && touche != ".") {
-            input = touche.toString()
+            input = touche.toString();
+
         }
-        else { input = input + touche.toString()}
-    
+        else { 
+            input = input + touche.toString();
+           
+
+        }
+        number = input;
+        if (number.match(regex) && number.length <= 12) {
+            console.log("number ok")
+        }
+        else {console.log("trop longue")}
+        // limiter un chiffre à 15 caractères
+        // if (input.length > 15) {
+        //     console.log("+ 15");
+        //     // enlever dernier chiffres
+        //     input = input.substr(0, input.length -1);
+        // }
+
         ecranElt.innerText = input;
 
-        console.log("input chiffre " + input)
         // afficher dans ecran
         ecranResul.innerText = eval(input);
 
@@ -207,8 +225,6 @@ function gererTouches (e) {
 
                 // on stock operation
                 operation = touche;
-
-                console.log(input)
                 
                 // reinitialiser affichage
                 affichage = "0";
