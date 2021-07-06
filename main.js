@@ -51,7 +51,6 @@ window.onload = () => {
     for ( let i = 0; i<bOperation.length; i++) {
         bOperation[i].addEventListener('click', oneClick)
     }
-
     
     document.addEventListener('keydown', function (event) {
         // si la touche appuyé est dans la liste autorisés, on associé avec action du clic
@@ -78,34 +77,27 @@ window.onload = () => {
 
             // pour le . décimal
             if (event.key == ".") {
-                console.log(event.key)
-
                 // associer à bouton C
-            decimal.click()
+                decimal.click()
             }
 
                 // pour la touche Delete au clavier
             if (event.key == "Delete") {
-                    console.log(event.key)
-
                     // associer à bouton C
-            document.getElementById("bDel").click()
-                }
+                document.getElementById("bDel").click()
+            }
+
                 // pour la touche Backspace au clavier
             if (event.key == "Backspace") {
-                    console.log(event.key)
+                // associer à bouton CE
+                document.getElementById("bD").click()
+            }
 
-                    // associer à bouton C
-                    document.getElementById("bD").click()
-                }
                 // pour la touche Enter au clavier
             if (event.key == "Enter") {
-                    
-                    // associer à bouton C
-                    document.getElementById("bEgale").click()
-                }
-                
-            
+                    // associer à bouton =
+                document.getElementById("bEgale").click()
+            }
         }
     });
 
@@ -124,35 +116,19 @@ window.onload = () => {
 // fonction gerer les touches au clic
 function gererTouches (e) {
     let touche ;
-    
 
-    // on vérifie si évènement est de type keydown
-    // if (e.type == "keydown" ) {
-    //     // on compare la touche appuyé dans la liste autorisé
-    //     if ( listTouches.includes(e.key)) {
-    //         // empêcher action default du touche ( ex firefox /)
-    //         e.preventDefault();
-    //         // on stock la valeur dans variable touche
-    //         touche = e.key;
-            
-    //     }
-    // }
-    // else {
-        touche = this.innerText;    // sinon c'est du clic
-    // }
+    touche = this.innerText;    // prendre la valeur du click
+
 
     // vérifier si la touche est chiffre ou .
     if (parseFloat(touche) >= 0 || touche ==".") {
         // regex pour chiffre decimal, et chiffre entier
-        let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
+        // let regex = /^(-?\d*)((\.(\d*)?)?)$/g;
         // verifier si la chaine n'a plus d'1 .
         
         // verifier si y a un chifre avant?
-        affichage = (affichage =="0") ? touche.toString() : affichage + touche.toString()
-        ;
-        // on stock les nombres dans input
-        // input =  input + touche.toString();
-
+        affichage = (affichage =="0") ? touche.toString() : affichage + touche.toString();
+        
         // pour commencer et quand on veut faire 0. + chiffre
         if (input == "0" && touche == ".") {
             input = input + touche;
@@ -164,24 +140,10 @@ function gererTouches (e) {
         }
         else { 
             input = input + touche.toString();
-           
-
         }
-        number = input;
-        if (number.match(regex) && number.length <= 12) {
-            console.log("number ok")
-        }
-        else {console.log("trop longue")}
-        // limiter un chiffre à 15 caractères
-        // if (input.length > 15) {
-        //     console.log("+ 15");
-        //     // enlever dernier chiffres
-        //     input = input.substr(0, input.length -1);
-        // }
-
-        ecranElt.innerText = input;
-
+        
         // afficher dans ecran
+        ecranElt.innerText = input;
         ecranResul.innerText = eval(input);
 
         // activer les boutons des opérations
@@ -190,6 +152,7 @@ function gererTouches (e) {
         }
         return input
     }
+
     // si c'est pas les chiffres => les opérations
     else {
         switch (touche) {
@@ -220,14 +183,12 @@ function gererTouches (e) {
                 // on calcul la valeur de opération précédente:
                 precedent = (precedent === 0) ? parseFloat(affichage) : calculer(precedent, parseFloat(affichage), operation);
 
-                // on met à jour ecran
-                // ecranResul.innerText = precedent;
-
                 // on stock operation
                 operation = touche;
                 
                 // reinitialiser affichage
                 affichage = "0";
+                // on desactiver tous les touches opérations
                 oneClick()
                 break;
 
@@ -272,6 +233,7 @@ function gererTouches (e) {
                 // reinitialiser precedent
                 precedent = 0;
                 input = "0";
+                // on avtiver tous les touches
                 active()
                 break;
 
@@ -298,7 +260,6 @@ function gererTouches (e) {
                 break;
 
             case "CE":
-            // case "Backspace":
                 // effacer dernier chiffre entrée
                 remouv()
             
